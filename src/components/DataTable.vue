@@ -30,7 +30,7 @@
           {{ columns[1].label }}
         </div>
         <div class="data-table__cell" :style="getCellStyles(1)">
-          {{ row.date }}
+          {{ formatDate(row.date) }}
         </div>
         <div class="data-table__cell data-table__cell_strong data-table__cell_visible-xs">
           {{ columns[2].label }}
@@ -42,7 +42,7 @@
           {{ columns[3].label }}
         </div>
         <div class="data-table__cell" :style="getCellStyles(3)">
-          {{ row.money }}
+          {{ formatMoney(row.money) }}
         </div>
       </div>
     </div>
@@ -57,6 +57,9 @@
 </template>
 
 <script>
+import formatDate from '@/helpers/formatDate';
+import formatMoney from '@/helpers/formatMoney';
+
 export default {
 
   name: 'DataTable',
@@ -95,6 +98,10 @@ export default {
         flexBasis: this.columns[index].width,
       };
     },
+
+    formatDate,
+
+    formatMoney,
   },
 };
 </script>
