@@ -4,7 +4,7 @@
       <ui-money v-model="moneyFilter" />
     </div>
     <div class="data-table__head">
-      <div class="data-table__row data-table__row_not-bordered-btm">
+      <div class="data-table__row">
         <div
           v-for="(column, i) in columns"
           :key="column.prop"
@@ -82,13 +82,21 @@ export default {
   }),
 
   computed: {
+    filteredRows() {
+      if (this.moneyFilter) {
+        return this.rows.filter((row) => row.money <= this.moneyFilter);
+      }
+
+      return this.rows;
+    },
+
     pageCount() {
-      return Math.ceil(this.rows.length / this.pageSize);
+      return Math.ceil(this.filteredRows.length / this.pageSize);
     },
 
     currentPageRows() {
       const start = (this.page - 1) * 4;
-      return this.rows.slice(start, start + this.pageSize);
+      return this.filteredRows.slice(start, start + this.pageSize);
     },
   },
 

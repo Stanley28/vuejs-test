@@ -9,6 +9,14 @@
 
     &__body {
         margin: 0 0 2rem;
+
+        .data-table__row:first-child {
+            border-top: 0;
+
+            @media screen and (max-width: 768px) {
+                border-top: 1px solid #000;
+            }
+        }
         
         @media screen and (max-width: 768px) {
             margin: 2rem 0;
@@ -28,10 +36,6 @@
 
         &:first-child {
             border-top: 1px solid #000;
-        }
-
-        &_not-bordered-btm {
-            border-bottom: none;
         }
     }
 
