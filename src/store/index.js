@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import api from '@/api';
-
+import dataSourceService from '@/services/dataSource';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -32,7 +31,7 @@ export default new Vuex.Store({
       commit('setState', { isLoading: true });
 
       try {
-        const { data } = await api.getPayments(params);
+        const { data } = await dataSourceService.getPayments(params);
 
         if (Array.isArray(data)) {
           commit('setState', { data });
