@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import dataSourceService from '@/services/dataSource';
+import storage from '@/services/storage';
+import { PAYMENTS } from '@/constants/storageKeys';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -35,6 +38,9 @@ export default new Vuex.Store({
 
         if (Array.isArray(data)) {
           commit('setState', { data });
+
+          storage.set(PAYMENTS, JSON.stringify(data));
+          commit('setState', { isCached: true });
         }
       } catch (e) {
         // eslint-disable-next-line no-alert

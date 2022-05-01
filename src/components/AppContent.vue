@@ -10,7 +10,7 @@
           <p>You can clear cache and load data again.</p>
         </template>
         <template #footer>
-          <ui-button type="primary">
+          <ui-button @click="load" type="primary">
             Clear cache
           </ui-button>
         </template>
@@ -65,7 +65,9 @@ export default {
   },
 
   created() {
-    this.load();
+    if (!this.isCached) {
+      this.load();
+    }
   },
 
   methods: {
